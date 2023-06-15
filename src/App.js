@@ -10,13 +10,24 @@ function App(){
 
 function ListDemo(){
   let list = ["delhi","mumbai","chennai"];
+  let list1 = [];
+  for(let i=1;i<=10;i++){
+    list.push("");
+  }
   return(
     <>
     <h1>Hello world</h1>
-    {/**for Each is consumer */}
-    {list.forEach((item)=>item)}
-    {/**map method is i/o */}
+    {/** version: map method is i/o */}
     {list.map((item) =>  item)};
+    <hr />
+    {/** version 2 */}
+    {list.map((item) => `Hello ${item}` )};
+    <hr />
+    {/** version 3 */}
+    {list.map((item) => (<><h1>Hello {item}</h1> </>))};
+    <hr />
+    {list.map((item)=><h1>Hello</h1>)};
+
     </>
   );
 }
@@ -33,3 +44,5 @@ function MessageDemo({username,city}){
 }
 
 export default App;
+
+
