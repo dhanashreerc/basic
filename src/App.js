@@ -1,56 +1,38 @@
-import {useRef, useState} from "react";
+import { useState } from "react";
+
 function App(){
   return(
     <>
-      <h1>Stateful Lists</h1>
-      <ListDemo/>
+      <h1>My ToDo</h1>
+      <MyToDo/>
     </>
+    
   );
-  
-
 }
 
-function ListDemo(){
-  let inputRef = useRef();
-  let [list, setList] = useState(["delhi"]);
+function MyToDo(){
+  //s1
+  let [todo, setTodo] = useState({task:""});
 
-  //C2: Action Member Function
-  let handleClick = ()=>{
-    // let inputRef= document.querySelector("#id1");
-    // let inputVal = inputRef.value;
-    //console.log(inputRef.current.value);
-    let inputVal = inputRef.current.value;
-   let newList = [inputVal,...list];
-    setList(newList);
-    inputRef.value=" ";
-    
+  //s3
+  let handleTaskChange=(e)=>{
+    //console.log(e.target.value);
+    let newTodo = {...todo,task:e.target.value};
+    //console.log(newTodo);
+    setTodo(newTodo);
+
+  }
+
+  //s4
+  let handleClick=()=>{
+    alert(todo.task);
   }
   return(
     <>
-      {/**C3: Event Binding */}
-      <input type="text"ref={inputRef} placeholder="WhatsAPP..."/>
-      <input type="button" value="Add Message" onClick={handleClick}/>
-      
-      {/**C4: List */}
-      {list.map((item)=>(
-        <MessageDemo message={item}/>
-        
-      ))}
-      
+      <input onChange={handleTaskChange} className="form-control" type="text" placeholder="Enter Task..." value={todo.task} />
+      <input onClick={handleClick} type="button" value="Add Todo" />
     </>
-  )
+  );
 }
 
-function MessageDemo({message}){
-  return(
-    <div>
-          <h1>Hello {message}</h1>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque dolorem amet cum soluta explicabo iusto eius? Deleniti ex neque deserunt dolore ea unde autem amet laboriosam ducimus animi? Magni, autem?</p>
-          <div>
-            <input type="button" value="&#128077;" />
-            <input type="button" value="&#128078;" />
-          </div>
-        </div>
-  )
-}
 export default App;
