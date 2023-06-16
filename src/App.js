@@ -12,7 +12,7 @@ function App(){
 
 function MyToDo(){
   //s1
-  let [todo, setTodo] = useState({task:""});
+  let [todo, setTodo] = useState({task:"",desc:""});
 
   //s3
   let handleTaskChange=(e)=>{
@@ -23,14 +23,41 @@ function MyToDo(){
 
   }
 
+  let handleDesChange=(e)=>{
+    //console.log(e.target.value);
+    let newTodo = {...todo,desc:e.target.value};
+    //console.log(newTodo);
+    setTodo(newTodo);
+
+  }
+
   //s4
   let handleClick=()=>{
-    alert(todo.task);
+    alert(todo.task + todo.desc);
+
   }
   return(
     <>
-      <input onChange={handleTaskChange} className="form-control" type="text" placeholder="Enter Task..." value={todo.task} />
-      <input onClick={handleClick} type="button" value="Add Todo" />
+      <input 
+        onChange={handleTaskChange} 
+        className="form-control" 
+        type="text" 
+        placeholder="Enter Task..." 
+        value={todo.task} 
+      />
+      <textarea 
+        onChange={handleDesChange}
+        className="form-control" 
+        cols="30" 
+        rows="3"
+        placeholder="Enter Description..."
+
+      />
+      <input 
+        onClick={handleClick} 
+        type="button" 
+        value="Add Todo" 
+      />
     </>
   );
 }
