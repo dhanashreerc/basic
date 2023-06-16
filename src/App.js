@@ -33,14 +33,7 @@ function ListDemo(){
       
       {/**C4: List */}
       {list.map((item)=>(
-        <div>
-          <h1>Hello {item}</h1>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque dolorem amet cum soluta explicabo iusto eius? Deleniti ex neque deserunt dolore ea unde autem amet laboriosam ducimus animi? Magni, autem?</p>
-          <div>
-            <input type="button" value="&#128077;" />
-            <input type="button" value="&#128078;" />
-          </div>
-        </div>
+        <MessageDemo message={item}/>
         
       ))}
       
@@ -48,4 +41,16 @@ function ListDemo(){
   )
 }
 
+function MessageDemo({message}){
+  return(
+    <div>
+          <h1>Hello {message}</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque dolorem amet cum soluta explicabo iusto eius? Deleniti ex neque deserunt dolore ea unde autem amet laboriosam ducimus animi? Magni, autem?</p>
+          <div>
+            <input type="button" value="&#128077;" />
+            <input type="button" value="&#128078;" />
+          </div>
+        </div>
+  )
+}
 export default App;
