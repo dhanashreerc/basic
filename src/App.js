@@ -2,7 +2,7 @@ import {useRef, useState} from "react";
 function App(){
   return(
     <>
-      <h1>Stateful Lists</h1>
+      <h1>My Project</h1>
       <ListDemo/>
     </>
   );
@@ -28,15 +28,24 @@ function ListDemo(){
   return(
     <>
       {/**C3: Event Binding */}
-      <input type="text"ref={inputRef} placeholder="WhatsAPP..."/>
-      <input type="button" value="Add Message" onClick={handleClick}/>
+      <div className="row justify-content-center align-items-center " style={{height:"100vh"}}>
+        <div className="col-sm-12 col-md-6">
+          <h1>Registration App</h1>
+          <input className="form-control" type="text"ref={inputRef} placeholder="Enter user input..."/>
+          <input className="form-control" type="text"ref={inputRef} placeholder="Enter Password..."/>
+          <input className="form-control" type="text"ref={inputRef} placeholder="Enter Email..."/>
+          <input  type="button" value="lOGIN" onClick={handleClick}/>
+        </div>
+
+      </div>
       
-      {/**C4: List */}
+      
+      {/* *C4: List
       {list.map((item)=>(
         <MessageDemo message={item}/>
         
       ))}
-      
+       */}
     </>
   )
 }
