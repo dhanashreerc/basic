@@ -32,8 +32,11 @@ function MyToDo(){
   }
 
   //s4
-  let handleClick=()=>{
-    alert(todo.task + todo.desc);
+  let handleClick=async()=>{
+    //alert(todo.task + todo.desc);
+    //connecting to backend
+    let url = `http://localhost:4000/addtodo?task=${todo.task}&desc=${todo.desc}`;
+    await fetch(url);
 
   }
   return(
