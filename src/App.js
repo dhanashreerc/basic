@@ -11,25 +11,23 @@ function App(){
 }
 
 function ListDemo(){
-  //let list = ["delhi"];
-  //C1: Stateful variable
+
   let [list, setList] = useState(["delhi"]);
 
   //C2: Action Member Function
   let handleClick = ()=>{
-    //why not push(), cuz it updates same object
-    //setter method requires immutable object
-    //we have to pass new list
-    let newList = [...list,"mumbai"];
-    console.log(newList);
-
-    //DOM::trigger dom
+    let inputRef= document.querySelector("#id1");
+    let inputVal = inputRef.value;
+    let newList = [inputVal,...list];
     setList(newList);
+    inputRef.value=" ";
+    
   }
   return(
     <>
       {/**C3: Event Binding */}
-      <input type="button" value="Add New Item" onClick={handleClick}/>
+      <input type="text" id="id1" placeholder="WhatsAPP..."/>
+      <input type="button" value="Add Message" onClick={handleClick}/>
       
       {/**C4: List */}
       {list.map((item)=>(
