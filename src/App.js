@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 function App(){
   return(
     <>
@@ -11,14 +11,16 @@ function App(){
 }
 
 function ListDemo(){
-
+  let inputRef = useRef();
   let [list, setList] = useState(["delhi"]);
 
   //C2: Action Member Function
   let handleClick = ()=>{
-    let inputRef= document.querySelector("#id1");
-    let inputVal = inputRef.value;
-    let newList = [inputVal,...list];
+    // let inputRef= document.querySelector("#id1");
+    // let inputVal = inputRef.value;
+    //console.log(inputRef.current.value);
+    let inputVal = inputRef.current.value;
+   let newList = [inputVal,...list];
     setList(newList);
     inputRef.value=" ";
     
@@ -26,7 +28,7 @@ function ListDemo(){
   return(
     <>
       {/**C3: Event Binding */}
-      <input type="text" id="id1" placeholder="WhatsAPP..."/>
+      <input type="text"ref={inputRef} placeholder="WhatsAPP..."/>
       <input type="button" value="Add Message" onClick={handleClick}/>
       
       {/**C4: List */}
