@@ -1,96 +1,24 @@
 import { useState } from "react";
+import {BrowserRouter,Route, Routes} from "react-router-dom";
 import MyToDo from "./pages/MyTodo";
+import MyRegistration from "./pages/MyRegistration";
 
 function App(){
   return(
     <>
-      <h1>Registration</h1>
-      <MyRegistration/>
-      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<h1>Hello</h1>}/>
+          <Route path="/home" element={<h1>Home</h1>}/>
+          <Route path="/todo" element={<MyToDo/>}/>
+          <Route path="/signup" element={<MyRegistration/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
     
   );
 }
 
-function MyRegistration(){
-  let [user, setUser]= useState({
-    username:"", 
-    password:"", 
-    email:"",
-    mobile:""
-  });
-
-  let handleNameChange=(e)=>{
-    let newUser = {...user,username: e.target.value};
-    setUser(newUser);
-  }
-  let handlePassChange=(e)=>{
-    let newUser = {...user,password: e.target.value};
-    setUser(newUser);
-  }
-  let handleEmailChange=(e)=>{
-    let newUser = {...user,email: e.target.value};
-    setUser(newUser);
-  }
-  let handleMobileChange=(e)=>{
-    let newUser = {...user,mobile: e.target.value};
-    setUser(newUser);
-  }
-
-  let registerAction = async()=>{
-    //backend
-    let url= `http://localhost:4000/adduser?username=${user.username}&password=${user.password}&email=${user.email}&mobile=${user.mobile}`
-    await fetch(url);
-
-    let newuser={
-      username:"", 
-      password:"", 
-      email:"",
-      mobile:""
-    };
-
-    setUser(newuser);
-  }
-
-  return(
-    <>
-      <input 
-        className="form-control" 
-        type="text" 
-        placeholder="Enter username" 
-        value={user.username} 
-        onChange={handleNameChange}
-      />
-      <input 
-        className="form-control" 
-        type="password" 
-        placeholder="Enter password" 
-        value={user.password} 
-        onChange={handlePassChange}
-      />
-      <input 
-        className="form-control" 
-        type="text" 
-        placeholder="Enter email" 
-        value={user.email} 
-        onChange={handleEmailChange}
-      />
-      <input 
-        className="form-control" 
-        type="text" 
-        placeholder="Enter mobile" 
-        value={user.mobile}
-        onChange={handleMobileChange}
-      />
-      <input 
-        className="w-100" 
-        type="button" 
-        value="Register"
-        onClick={registerAction} 
-      />
-    </>
-  )
-}
 
 
 export default App;
