@@ -11,6 +11,8 @@ function App(){
 }
 
 function MyToDo(){
+
+  let [successBox, setSuccessBox] = useState(false)
   //s1
   let [todo, setTodo] = useState({task:"",desc:""});
 
@@ -28,7 +30,7 @@ function MyToDo(){
     let newTodo = {...todo,desc:e.target.value};
     //console.log(newTodo);
     setTodo(newTodo);
-
+   
   }
 
   //s4
@@ -38,6 +40,17 @@ function MyToDo(){
     let url = `http://localhost:4000/addtodo?task=${todo.task}&desc=${todo.desc}`;
     await fetch(url);
 
+
+    //clear the input box after button clicked
+    let newTodo = {task:" ", desc:" "};
+    setTodo(newTodo);
+
+
+    //alert-box value change
+    setSuccessBox(true);
+    setTimeout(()=>{
+      setSuccessBox(false);
+    },1000);
   }
   return(
     <>
@@ -61,6 +74,9 @@ function MyToDo(){
         type="button" 
         value="Add Todo" 
       />
+      {/**---conditional rendering------*/}
+      {successBox && <div className="alert alert-success">Operation Success</div> }
+      
     </>
   );
 }
