@@ -4,6 +4,7 @@ import MyToDo from "./pages/MyTodo";
 import MyRegistration from "./pages/MyRegistration";
 import MyNavLink from "./pages/MyNavLink";
 import MyTodoList from "./pages/MyTodoList";
+import MyUserList from "./pages/MyUserList";
 //import MyNavUsingButton from "./pages/MyNavUsingButton";
 
 function App(){
@@ -16,6 +17,7 @@ function App(){
           <Route path="/home" element={<h1>Home</h1>}/>
           <Route path="/todo" element={<MyToDo/>}/>
           <Route path="/todo-list" element={<MyTodoList/>}/>
+          <Route path="/user-list" element={<MyUserList/>}/>
           <Route path="/registration" element={<MyRegistration/>}/>
           <Route path="*" element={<h1>Page Not found</h1>}/>
         </Routes>
