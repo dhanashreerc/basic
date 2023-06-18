@@ -1,7 +1,7 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 function MyToDo(){
-
+    let formRef = useRef();
     let [successBox, setSuccessBox] = useState(false)
     //s1
     let [todo, setTodo] = useState({task:"",desc:""});
@@ -25,6 +25,12 @@ function MyToDo(){
   
     //s4
     let handleClick=async()=>{
+      //form-validation
+      formRef.current.classList.add("was-validated");
+      let formStatus = formRef.current.checkValidity();
+      if(!formStatus){
+        return;
+      }
       //alert(todo.task + todo.desc);
       //connecting to backend
       let url = `http://localhost:4000/addtodo?task=${todo.task}&desc=${todo.desc}`;
@@ -32,7 +38,7 @@ function MyToDo(){
   
   
       //clear the input box after button clicked
-      let newTodo = {task:" ", desc:" "};
+      let newTodo = {task:"",desc:""};
       setTodo(newTodo);
   
   
@@ -41,29 +47,37 @@ function MyToDo(){
       setTimeout(()=>{
         setSuccessBox(false);
       },1000);
+
+      formRef.current.classList.remove("was-validated");
     }
     return(
       <>
-        <input 
-          onChange={handleTaskChange} 
-          className="form-control" 
-          type="text" 
-          placeholder="Enter Task..." 
-          value={todo.task} 
-        />
-        <textarea 
-          onChange={handleDesChange}
-          className="form-control" 
-          cols="30" 
-          rows="3"
-          placeholder="Enter Description..."
-  
-        />
-        <input 
-          onClick={handleClick} 
-          type="button" 
-          value="Add Todo" 
-        />
+        <form ref={formRef} className="needs-validation">
+          <input 
+            onChange={handleTaskChange} 
+            className="form-control" 
+            type="text" 
+            placeholder="Enter Task..." 
+            value={todo.task} 
+            required
+          />
+          <textarea 
+            onChange={handleDesChange}
+            className="form-control" 
+            cols="30" 
+            rows="3"
+            placeholder="Enter Description..."
+            value={todo.desc} 
+            required
+    
+          />
+          <input 
+            onClick={handleClick} 
+            type="button" 
+            value="Add Todo" 
+          />
+        </form>
+        
         {/**---conditional rendering------*/}
         {successBox && <div className="alert alert-success">Operation Success</div> }
         
