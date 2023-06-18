@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 
 function MyRegistration(){
-
+ 
     let fromRef = useRef();
+    let [isSuccess, setIsSuccess] = useState(false);
+    let [isError, setIsError] = useState(false);
     let [user, setUser]= useState({
       username:"", 
       password:"", 
@@ -52,8 +54,18 @@ function MyRegistration(){
     
         setUser(newuser);
         fromRef.current.classList.remove("was-validated");
+        alert("success");
+        setIsSuccess(true);
+        setIsError(false);
       }catch(err){
         alert(err.message);
+        setIsSuccess(false);
+        setIsError(true);
+      }finally{
+        setTimeout(()=>{
+          setIsSuccess(false);
+          setIsError(false)
+        },1000);
       }
       
     }
@@ -100,6 +112,8 @@ function MyRegistration(){
           onClick={registerAction} 
         />
         </form>
+        {isSuccess && <div className="alert alert-success">Success</div>}
+        {isError && <div className="alert alert-danger">Error</div>}
       </>
     )
   }
