@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyNavUsingButton from "./MyNavUsingButton";
 
 function MyUserList(){
     const[userList , setUserList]= useState([]);
+
+    useEffect(()=>{
+        getUser();
+    },[]);
     const getUser = async()=>{
         let url ="http://localhost:8000/find-user-list";
         let res = await fetch(url);
@@ -13,7 +17,7 @@ function MyUserList(){
     return(
         <>
         <h1>User List</h1>
-        <input type="button" value="Get User List" onClick={getUser} />
+        {/* <input type="button" value="Get User List" onClick={getUser} /> */}
         {userList.map((item)=>(
             <>
                 <div>

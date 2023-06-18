@@ -5,6 +5,7 @@ import MyRegistration from "./pages/MyRegistration";
 import MyNavLink from "./pages/MyNavLink";
 import MyTodoList from "./pages/MyTodoList";
 import MyUserList from "./pages/MyUserList";
+import ValidationDemo from "./pages/ValidationDemo";
 //import MyNavUsingButton from "./pages/MyNavUsingButton";
 
 function App(){
@@ -18,6 +19,7 @@ function App(){
           <Route path="/todo" element={<MyToDo/>}/>
           <Route path="/todo-list" element={<MyTodoList/>}/>
           <Route path="/user-list" element={<MyUserList/>}/>
+          <Route path="/validation-demo" element={<ValidationDemo/>}/>
           <Route path="/registration" element={<MyRegistration/>}/>
           <Route path="*" element={<h1>Page Not found</h1>}/>
         </Routes>
